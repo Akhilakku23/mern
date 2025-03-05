@@ -1,6 +1,11 @@
+import Header from './componets/Header/Header';
+import Hero from './componets/Hero/Hero';
 function App() {
   return (
-    <span>akhil</span>
+    <div>
+      <Header/>
+      <Hero/>
+    </div>
   );
 }
 
