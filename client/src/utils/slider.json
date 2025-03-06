@@ -1,0 +1,38 @@
+[
+    {
+      "name": "Artech Marvel",
+      "price": "1.5cr",
+      "detail": "3 BHK Flat in Pattom, Trivandrum",
+      "image": "./r1.png"
+    },
+    {
+      "name": "Karthika plaza",
+      "price": "4cr",
+      "detail": "18 BHK Serviced Apartment in Pattom, Trivandrum",
+      "image": "./r2.png"
+    },
+    {
+      "name": "galaxyapartments",
+      "price": "48 Lac",
+      "detail": "2 BHK Flat in Pattom, Trivandrum",
+      "image": "./r3.png"
+    },
+    {
+      "name": "Future House",
+      "price": "4.2cr",
+      "detail": "5 Bedroom House in Sasthamangalam, Trivandrum",
+      "image": "./r1.png"
+    },
+    {
+      "name": "Cordon Sreevalsam",
+      "price": "95 Lac",
+      "detail": "3 BHK Flat in Sasthamangalam, Trivandrum",
+      "image": "./r2.png"
+    },
+    {
+      "name": "Arcon Elite",
+      "price": "1.45 cr",
+      "detail": "3 BHK Flat in Sasthamangalam, Trivandrum",
+      "image": "./r3.png"
+    }
+  ]
