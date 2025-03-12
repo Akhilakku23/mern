@@ -1,22 +1,22 @@
-import Header from './componets/Header/Header';
-import Hero from './componets/Hero/Hero';
-import Residencies from './componets/Residencies/Residencies';
-import Contact from './componets/Contact/Contact';
-import GetStarted from './componets/GetStarted/GetStarted';
-import Footer from './componets/Footer/Footer';
-
+import { Suspense } from "react";
+import "./App.css"
+import Website from "./pages/Website";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./componets/Layout/Layout";
+import Properties from "./pages/Properties/Properties";
 
 function App() {
   return (
-    <div>
-      <Header/>
-      <Hero/>
-      <Residencies/>
-      <Contact/>
-      <GetStarted/>
-      <Footer/>
-     
-    </div>
+    <BrowserRouter>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Website />} />
+          <Route path="Properties" element={<Properties />} />
+        </Route>
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
   );
 }
 
