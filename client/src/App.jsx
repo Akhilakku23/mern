@@ -9,7 +9,7 @@ import Properties from "./pages/Properties/Properties";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"; 
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ToastContainer } from "react-toastify";
-
+import "react-toastify/dist/ReactToastify.css";
 const queryClient = new QueryClient();
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
         </Suspense>
       </BrowserRouter>
       <ToastContainer/>
-      <ReactQueryDevTools initialIsOpen={false}/>
+      <ReactQueryDevtools initialIsOpen={false}/>
     </QueryClientProvider>
   );
 }
