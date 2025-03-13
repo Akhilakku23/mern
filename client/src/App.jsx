@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Property from "./pages/Property/Property";
 const queryClient = new QueryClient();
 
 function App() {
@@ -20,7 +21,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Layout />}> 
               <Route index element={<Website />} />
-              <Route path="properties" element={<Properties />} />
+              <Route path="/properties">
+              <Route index element={<Properties />} />
+              <Route path=":propertyId" element={<Property />} />
+              </Route>
             </Route>
           </Routes>
         </Suspense>
