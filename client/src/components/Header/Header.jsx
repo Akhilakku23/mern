@@ -3,11 +3,16 @@ import './Header.css'
 import { BiMenuAltRight } from "react-icons/bi";
 import { useState } from 'react';
 import OutSideClickHandler from "react-outside-click-handler";
+import { getMenuStyles } from '../../utils/common' 
+import useHeaderColor from "../../hooks/useHeaderColor";
 import { Link, NavLink } from "react-router-dom";
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 const Header = () => {
-  const [menuOpened, setMenuOpened] = useState(false)
+  const [menuOpened, setMenuOpened] = useState(false);
+  const headerColor = useHeaderColor();
+  const {loginWithRedirect, isAuthenticated, user, logout} = useAuth0()
 
   const getMenuStyles = (menuOpened)=> { 
     if (document.documentElement.clientWidth <= 800)
@@ -36,12 +41,14 @@ const Header = () => {
           <a href="mailto:akhilsaji0031@gmail.com">Contact</a>
 
           {/* login button */}
-
-          
-              <button className="button">
+          {isAuthenticated ? (
+              <button className="button" onClick={loginWithRedirect}>
                 Login
               </button>
-       
+          ) : (
+            <div>User profile</div>
+          )
+            }
         </div>
         </OutSideClickHandler>
         <div className="menu-icon" onClick={()=>setMenuOpened((prev)=>!prev)}>
