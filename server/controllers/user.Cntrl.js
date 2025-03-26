@@ -17,6 +17,7 @@ export const createUser = asyncHandler(async (req, res) => {
 });
 
 
+
 // function to book a visit to resd
 export const bookVisit = asyncHandler(async (req, res) => {
     const { email, date } = req.body;
@@ -132,7 +133,7 @@ export const toFav = asyncHandler(async (req, res) => {
     }
   });
 
-
+  
 // function to get all favorites
 export const getAllFavorites = asyncHandler(async (req, res) => {
   const { email } = req.body;
@@ -145,4 +146,4 @@ export const getAllFavorites = asyncHandler(async (req, res) => {
   } catch (err) {
     throw new Error(err.message);
   }
-});  
+});

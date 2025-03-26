@@ -53,7 +53,9 @@ const ProfileMenu = () => {
 
           <div
             className="profile-dropdown-item logout"
-            onClick={() => logout({ returnTo: window.location.origin })}
+            onClick={()=>{
+              localStorage.clear();
+              logout()}}
           >
             <BiLogOut size={18} />
             Logout
