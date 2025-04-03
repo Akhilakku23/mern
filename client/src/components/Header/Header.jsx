@@ -1,3 +1,4 @@
+
 // import React, { useState } from "react";
 // import "./Header.css";
 // import { BiMenuAltRight } from "react-icons/bi";
@@ -6,12 +7,16 @@
 // import useHeaderColor from "../../hooks/useHeaderColor";
 // import { Link, NavLink } from "react-router-dom";
 // import { useAuth0 } from "@auth0/auth0-react";
+// import ProfileMenu from "../ProfileMenu/ProfileMenu"; // ✅ Import ProfileMenu
+
 
 // const Header = () => {
+
 //   const [menuOpened, setMenuOpened] = useState(false);
 //   const headerColor = useHeaderColor();
-//   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
-
+//   const { loginWithRedirect, isAuthenticated } = useAuth0(); // ✅ Get auth state
+ 
+  
 //   return (
 //     <section className="h-wrapper">
 //       <div className="flexCenter innerWidth paddings h-container">
@@ -26,16 +31,12 @@
 //             <NavLink to="/properties">Properties</NavLink>
 //             <a href="mailto:akhilsaji0031@gmail.com">Contact</a>
 
-//             {/* User Authentication UI */}
+                
+//               {/* User Authentication UI */}
 //             {isAuthenticated ? (
-//               <>
-//                 <span>Welcome, {user?.name}</span>
-//                 <button className="button" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-//                   Logout
-//                 </button>
-//               </>
+//               <ProfileMenu /> // ✅ Show ProfileMenu when logged in
 //             ) : (
-//               <button className="button" onClick={() => loginWithRedirect()}>
+//               <button className="button" onClick={loginWithRedirect}>
 //                 Login
 //               </button>
 //             )}
@@ -60,12 +61,23 @@ import { getMenuStyles } from "../../utils/common";
 import useHeaderColor from "../../hooks/useHeaderColor";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import ProfileMenu from "../ProfileMenu/ProfileMenu"; // ✅ Import ProfileMenu
+import ProfileMenu from "../ProfileMenu/ProfileMenu"; 
+import AddPropertyModal from "../AddPropertyModal/AddPropertyModal"; // ✅ Import AddPropertyModal
+import useAuthCheck from "../../hooks/useAuthCheck"; // ✅ Import auth check hook
 
 const Header = () => {
   const [menuOpened, setMenuOpened] = useState(false);
+  const [modalOpened, setModalOpened] = useState(false);
   const headerColor = useHeaderColor();
-  const { loginWithRedirect, isAuthenticated } = useAuth0(); // ✅ Get auth state
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
+  const { validateLogin } = useAuthCheck();
+
+  const handleAddPropertyClick = () => {
+    if (validateLogin()) {
+      console.log("Opening Modal..."); // Debugging
+      setModalOpened(true);
+    }
+  };
 
   return (
     <section className="h-wrapper">
@@ -81,9 +93,17 @@ const Header = () => {
             <NavLink to="/properties">Properties</NavLink>
             <a href="mailto:akhilsaji0031@gmail.com">Contact</a>
 
+            {/* Add Property Button */}
+            <div
+              onClick={handleAddPropertyClick}
+              className="cursor-pointer bg-blue-500 text-white px-4 py-2 rounded"
+            >
+              Add Property
+            </div>
+
             {/* User Authentication UI */}
             {isAuthenticated ? (
-              <ProfileMenu /> // ✅ Show ProfileMenu when logged in
+              <ProfileMenu /> 
             ) : (
               <button className="button" onClick={loginWithRedirect}>
                 Login
@@ -91,6 +111,9 @@ const Header = () => {
             )}
           </div>
         </OutSideClickHandler>
+
+        {/* Add Property Modal */}
+        <AddPropertyModal opened={modalOpened} setOpened={setModalOpened} />
 
         {/* Mobile Menu Icon */}
         <div className="menu-icon" onClick={() => setMenuOpened((prev) => !prev)}>
